@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8000'
-const DEFAULT_ACCESS_CODE = 'shrishailya-ops-2026'
 
 function App() {
   const [accessCode, setAccessCode] = useState('')
@@ -36,11 +35,15 @@ function App() {
   }, [])
 
   const handleAccess = async () => {
+    if (!accessCode.trim()) {
+      setMessage('Enter the access code')
+      return
+    }
     try {
       const response = await fetch(`${API_BASE}/access/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: accessCode || DEFAULT_ACCESS_CODE }),
+        body: JSON.stringify({ code: accessCode }),
       })
       const data = await response.json()
       if (!response.ok) {
@@ -50,7 +53,7 @@ function App() {
       }
       setAuthorized(data.ok)
       setMessage('Private board unlocked')
-      loadPrivateData(accessCode || DEFAULT_ACCESS_CODE)
+      loadPrivateData(accessCode)
     } catch {
       setMessage('Unable to reach the backend')
     }
@@ -59,8 +62,8 @@ function App() {
   const loadPrivateData = async (code) => {
     try {
       const [metadataRes, tasksRes] = await Promise.all([
-        fetch(`${API_BASE}/metadata`, { headers: { code } }),
-        fetch(`${API_BASE}/tasks`, { headers: { code } }),
+        fetch(`${API_BASE}/metadata`, { headers: { 'X-Access-Code': code } }),
+        fetch(`${API_BASE}/tasks`, { headers: { 'X-Access-Code': code } }),
       ])
       const metadata = await metadataRes.json()
       const taskData = await tasksRes.json()
@@ -79,7 +82,7 @@ function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          code: accessCode || DEFAULT_ACCESS_CODE,
+          'X-Access-Code': accessCode,
         },
         body: JSON.stringify(form),
       })
@@ -102,7 +105,7 @@ function App() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          code: accessCode || DEFAULT_ACCESS_CODE,
+          'X-Access-Code': accessCode,
         },
         body: JSON.stringify({ completed: !task.completed }),
       })
@@ -124,7 +127,7 @@ function App() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          code: accessCode || DEFAULT_ACCESS_CODE,
+          'X-Access-Code': accessCode,
         },
         body: JSON.stringify({ published: !task.published }),
       })
@@ -147,7 +150,7 @@ function App() {
     try {
       const response = await fetch(`${API_BASE}/tasks/${taskId}`, {
         method: 'DELETE',
-        headers: { code: accessCode || DEFAULT_ACCESS_CODE },
+        headers: { 'X-Access-Code': accessCode },
       })
       if (!response.ok) {
         const data = await response.json()
@@ -229,7 +232,6 @@ function App() {
               />
               <button onClick={handleAccess}>{authorized ? 'Unlocked' : 'Unlock'}</button>
             </div>
-            {!authorized ? <p className="hint">Default code: {DEFAULT_ACCESS_CODE}</p> : null}
           </article>
 
           <article className="panel">
