@@ -1,0 +1,22 @@
+.rule {
+  height: 0;
+  margin: var(--space-4) 0;
+  border: 0;
+  border-top: var(--border-width) solid var(--border);
+}
+
+.rule-labeled {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.rule-labeled::after {
+  content: "";
+  flex: 1;
+  border-top: var(--border-width) solid var(--border);
+}

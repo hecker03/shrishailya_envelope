@@ -1,0 +1,127 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 10;
+  padding: var(--space-1) var(--space-2);
+  border: var(--border-width) solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-bottom: var(--border-width) solid var(--border);
+  background: var(--bg);
+}
+
+.topbar-brand,
+.rail-brand {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+}
+
+.layout-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  padding: var(--space-1) 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.layout-link:hover {
+  color: var(--text);
+}
+
+.layout-link[aria-current="page"] {
+  color: var(--accent);
+}
+
+.layout-number {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.layout-link[aria-current="page"] .layout-number {
+  color: var(--accent);
+}
+
+.layout-frame {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+.main {
+  padding: var(--space-5) 0 var(--space-8);
+  outline: none;
+}
+
+.rail {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .topbar {
+    display: none;
+  }
+
+  .layout-frame {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  .rail {
+    display: block;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    padding: var(--space-5) var(--space-3) var(--space-5) 0;
+    border-right: var(--border-width) solid var(--border);
+  }
+
+  .rail-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: var(--space-4);
+  }
+
+  .main {
+    padding: var(--space-5) 0 var(--space-8) var(--space-5);
+  }
+}

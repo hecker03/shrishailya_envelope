@@ -1,0 +1,22 @@
+.status-bar {
+  margin-top: auto;
+  border-top: var(--border-width) solid var(--border);
+  background: var(--bg);
+}
+
+.status-bar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-1) var(--space-3);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.status-bar-sep {
+  margin-right: var(--space-1);
+  color: var(--border);
+}
