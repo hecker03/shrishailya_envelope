@@ -20,3 +20,7 @@
   margin-right: var(--space-1);
   color: var(--border);
 }
+
+.status-bar-item {
+  white-space: nowrap;
+}

@@ -95,6 +95,16 @@
   display: none;
 }
 
+@media (max-width: 479px) {
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .topbar-nav {
+    flex-basis: 100%;
+  }
+}
+
 @media (min-width: 768px) {
   .topbar {
     display: none;
