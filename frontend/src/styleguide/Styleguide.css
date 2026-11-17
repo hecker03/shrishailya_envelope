@@ -1,0 +1,81 @@
+.sg-lede {
+  max-width: 60ch;
+  margin-bottom: var(--space-3);
+  color: var(--muted);
+}
+
+.sg-section {
+  scroll-margin-top: 88px;
+}
+
+.sg-heading {
+  margin-bottom: var(--space-3);
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.sg-number {
+  color: var(--accent);
+}
+
+.sg-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--space-2);
+}
+
+.sg-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.sg-swatch-chip {
+  height: 56px;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+}
+
+.sg-swatch-value {
+  color: var(--muted);
+}
+
+.sg-label {
+  margin: 0 0 var(--space-1);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.sg-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sg-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sg-note {
+  margin: var(--space-2) 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.sg-stack .sg-note {
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .sg-swatches {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

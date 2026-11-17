@@ -1,0 +1,26 @@
+.tag {
+  display: inline-block;
+  padding: 0 var(--space-1);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.tag-accent {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tag-warn {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.tag-danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
