@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   frontend:
-    name: frontend (lint, test, build)
+    name: frontend (lint, build)
     runs-on: ubuntu-latest
     defaults:
       run:
